@@ -1,26 +1,181 @@
 @import "tailwindcss";
 
 :root {
+  /* Professional Industrial Color Scheme */
+  --primary: #1e3a8a; /* Deep Blue */
+  --primary-light: #3b82f6; /* Medium Blue */
+  --primary-dark: #1e40af; /* Darker Blue */
+  --secondary: #374151; /* Dark Gray */
+  --secondary-light: #6b7280; /* Medium Gray */
+  --accent: #059669; /* Emerald for success/CTAs */
   --background: #ffffff;
-  --foreground: #171717;
+  --background-gray: #f8fafc; /* Light Gray Background */
+  --foreground: #111827; /* Almost Black */
+  --muted: #9ca3af; /* Muted Gray */
+  --border: #e5e7eb; /* Light Border */
+  --card: #ffffff;
+  --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
 @theme inline {
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-accent: var(--accent);
   --color-background: var(--background);
+  --color-background-gray: var(--background-gray);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-card: var(--card);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --shadow-card: var(--card-shadow);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom utility classes */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: var(--secondary-light);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: 2px solid var(--primary);
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+/* Mobile Responsiveness Enhancements */
+@media (max-width: 768px) {
+  .btn-primary, .btn-secondary, .btn-outline {
+    padding: 16px 24px;
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  /* Improve touch targets */
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better spacing on mobile */
+  .text-4xl { font-size: 2rem; }
+  .text-5xl { font-size: 2.5rem; }
+  .text-6xl { font-size: 3rem; }
+
+  /* Improve form usability on mobile */
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 44px;
+  }
+}
+
+/* Click-to-call styling */
+a[href^="tel:"] {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+a[href^="tel:"]:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* WhatsApp link styling */
+a[href*="wa.me"] {
+  background-color: #25D366;
+  color: white !important;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+a[href*="wa.me"]:hover {
+  background-color: #128C7E;
+}
+
+/* Ensure good contrast ratios */
+@media (prefers-contrast: high) {
+  :root {
+    --primary: #0c2d6b;
+    --foreground: #000000;
+    --background: #ffffff;
+  }
 }
